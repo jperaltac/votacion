@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Encuesta de Imágenes</title>
+<script>
+// Lista de IDs permitidos
+const allowedIDs = ['ID123', 'ID456', 'ID789', 'ID101', 'ID102'];
+
+function validateForm() {
+    const userID = document.getElementById('userID').value;
+    if (!allowedIDs.includes(userID)) {
+        alert('ID no válido. Por favor, introduzca un ID correcto.');
+        return false;
+    }
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkboxes.length > 3) {
+        alert('Por favor, seleccione un máximo de 3 imágenes.');
+        return false;
+    }
+
+    alert('Voto registrado. ¡Gracias por participar!');
+    return true;
+}
+
+function checkLimit(element) {
+    const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkedCheckboxes.length >= 3 && !element.checked) {
+        alert('No puede seleccionar más de 3 imágenes.');
+        element.checked = false;
+    }
+}
+</script>
+</head>
+<body>
+<h1>Encuesta de Imágenes</h1>
+<form onsubmit="return validateForm()">
+    <label for="userID">Ingrese su ID:</label>
+    <input type="text" id="userID" name="userID" required><br><br>
+    
+    <div>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 1</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 2</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 3</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 4</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 5</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 6</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 7</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 8</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 9</label><br>
+        <label><input type="checkbox" name="image" onclick="checkLimit(this)"> Imagen 10</label><br>
+    </div>
+    
+    <button type="submit">Enviar</button>
+</form>
+</body>
+</html>
